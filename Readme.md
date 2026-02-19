@@ -77,8 +77,8 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/spendwise.git
-   cd spendwise
+   git clone https://github.com/Koju-r28/SPENDWISE.git
+   cd SPENDWISE
    ```
 
 2. **Navigate to frontend directory**
@@ -229,4 +229,5 @@ If you like this project, please give it a ⭐ on GitHub!
 ---
 
 Made with ❤️ by [Ritu Koju]
+
 
