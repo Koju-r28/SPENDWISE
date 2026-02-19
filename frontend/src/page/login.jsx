@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,14 +19,49 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
     if (isLogin) {
-      console.log('Login:', { email: formData.email, password: formData.password });
+    
+      const res = await axios.post(
+        "http://localhost:5000/api/login",
+        {
+          email: formData.email,
+          password: formData.password,
+        }
+      );
+
+      alert(res.data.message);
+      console.log("Login Success:", res.data);
+
     } else {
-      console.log('Sign Up:', formData);
+ 
+      if (formData.password !== formData.confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      const res = await axios.post(
+        "http://localhost:5000/api/signup",
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
+
+      alert(res.data.message);
+      console.log("Signup Success:", res.data);
     }
-  };
+
+  } catch (error) {
+    alert(error.response?.data?.message || "Something went wrong");
+    console.log(error);
+  }
+};
+
 
   const toggleMode = () => {
     setIsLogin(!isLogin);
