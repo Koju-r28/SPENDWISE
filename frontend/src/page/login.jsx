@@ -25,14 +25,12 @@ const LoginPage = () => {
   try {
     if (isLogin) {
     
-      const res = await axios.post(
-        "http://localhost:5000/api/login",
-        {
-          email: formData.email,
-          password: formData.password,
-        }
-      );
-
+      const res = await axios.post("http://localhost:5000/api/auth/login",  
+  {
+    email: formData.email,
+    password: formData.password,
+  }
+);
       alert(res.data.message);
       console.log("Login Success:", res.data);
 
@@ -43,15 +41,13 @@ const LoginPage = () => {
         return;
       }
 
-      const res = await axios.post(
-        "http://localhost:5000/api/signup",
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        }
-      );
-
+      const res = await axios.post( "http://localhost:5000/api/auth/signup",  
+      {
+    name: formData.name,
+    email: formData.email,
+    password: formData.password,
+       }
+);
       alert(res.data.message);
       console.log("Signup Success:", res.data);
     }
